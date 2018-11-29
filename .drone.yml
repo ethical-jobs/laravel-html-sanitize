@@ -13,7 +13,7 @@ pipeline:
     pull: true
     commands: './vendor/bin/phpunit'
 
-  publish
+  publish:
     image: byrnedo/alpine-curl
     commands: [ 'curl -XPOST -H"content-type:application/json" "https://packagist.org/api/update-package?username=andrewmclagan&apiToken=2cmy6xog4hs0kogk4ccg" -d''{"repository":{"url":"https://github.com/ethical-jobs/laravel-html-sanitize"}}''' ]
     when:
