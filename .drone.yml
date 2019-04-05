@@ -1,7 +1,7 @@
 pipeline:
 
   dependancies:
-    image: ethical-jobs/composer-prestissimo
+    image: ethicaljobs/composer-prestissimo
     pull: true
     commands: 'composer install --prefer-dist'
 
