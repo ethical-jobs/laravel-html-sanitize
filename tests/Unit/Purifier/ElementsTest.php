@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Purifier;
 
-use DiDom\Document;
 use EthicalJobs\Sanitize\PurifierFactory;
+use Tests\TestCase;
 
-class ElementsTest extends \Tests\TestCase
+class ElementsTest extends TestCase
 {
     /**
      * @test
@@ -25,7 +25,8 @@ class ElementsTest extends \Tests\TestCase
         $output = $purifier->purify($html);
 
         $this->assertFalse(str_contains($output, [
-            '<span>','</span>',
+            '<span>',
+            '</span>',
         ]));
 
         $this->assertTrue(str_contains($output, [
@@ -34,8 +35,8 @@ class ElementsTest extends \Tests\TestCase
             '<div>Hello div</div>',
             '<p>Hello paragraph #1 Hello span</p>',
             '<p>Hello paragraph #2</p>',
-        ]));        
-    }     
+        ]));
+    }
 
     /**
      * @test
@@ -49,7 +50,7 @@ class ElementsTest extends \Tests\TestCase
                 <li style="text-align: right;">Hello List</li>
             </ul>
             <a href="" style="text-align: right;">Hello Link</a>
-            <img style="text-align: right;" src="google.com" />
+            <img style="text-align: right;" src="https://google.com"  alt="Google"/>
             <br style="text-align: right;" />
         ';
 
@@ -67,10 +68,10 @@ class ElementsTest extends \Tests\TestCase
             '<strong>Hello Strong</strong>',
             '<ul>',
             '<li>Hello List</li>',
-            '<img src="google.com" />',
+            '<img src="https://google.com"  alt="Google"/>',
             '<br />',
-        ]));        
-    }       
+        ]));
+    }
 
     /**
      * @test
@@ -109,8 +110,8 @@ class ElementsTest extends \Tests\TestCase
             '<h3>Heading #4</h3>',
             '<h3>Heading #5</h3>',
             '<h3>Heading #6</h3>',
-        ]));        
-    }       
+        ]));
+    }
 
     /**
      * @test
@@ -126,14 +127,14 @@ class ElementsTest extends \Tests\TestCase
             <br><br>
             <p>Hello there wonderful paragraph 3</p>';
 
-        $expected = '<h3>Hello world</h3><p> <br></p> <p>Hello there wonderful paragraph 1<br>Hello there wonderful paragraph 1.1</p><p> <br></p> <p>Hello there wonderful paragraph 2</p><p> <br></p> <p>Hello there wonderful paragraph 3</p>';            
+        $expected = '<h3>Hello world</h3><p> <br></p> <p>Hello there wonderful paragraph 1<br>Hello there wonderful paragraph 1.1</p><p> <br></p> <p>Hello there wonderful paragraph 2</p><p> <br></p> <p>Hello there wonderful paragraph 3</p>';
 
         $purifier = PurifierFactory::create();
 
         $output = $purifier->purify($html);
 
         $this->assertEquals($output, $expected);
-    }     
+    }
 
     /**
      * @test
@@ -162,8 +163,8 @@ class ElementsTest extends \Tests\TestCase
             '<h1>Hello world</h1>',
             '<br>',
             '<p>Hello there wonderful world...</p>',
-        ]));   
-        
-        $this->assertEquals(3, substr_count($output, '<br>'));        
-    }           
+        ]));
+
+        $this->assertEquals(3, substr_count($output, '<br>'));
+    }
 }

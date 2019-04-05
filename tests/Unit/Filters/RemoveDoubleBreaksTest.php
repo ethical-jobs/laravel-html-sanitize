@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Filters;
 
-use DiDom\Document;
 use EthicalJobs\Sanitize\Filters\RemoveDoubleBreaks;
+use Tests\TestCase;
 
-class RemoveDoubleBreaksTest extends \Tests\TestCase
+class RemoveDoubleBreaksTest extends TestCase
 {
     /**
      * @test
@@ -18,9 +18,10 @@ class RemoveDoubleBreaksTest extends \Tests\TestCase
 
         $filtered = $filter->apply($html);
 
-        $this->assertEquals($filtered, '<h1>Hello world</h1><br><p>Hello there wonderful paragraph 1</p> <br><p>Hello there wonderful paragraph 2</p><br><p>Hello there wonderful paragraph 3</p>');
-    }    
-    
+        $this->assertEquals($filtered,
+            '<h1>Hello world</h1><br><p>Hello there wonderful paragraph 1</p> <br><p>Hello there wonderful paragraph 2</p><br><p>Hello there wonderful paragraph 3</p>');
+    }
+
     /**
      * @test
      */
@@ -33,8 +34,8 @@ class RemoveDoubleBreaksTest extends \Tests\TestCase
         $filtered = $filter->apply($html);
 
         $this->assertEquals($filtered, '<h1>Hello world</h1><br>Hello<br>There');
-    }       
-    
+    }
+
     /**
      * @test
      */
@@ -47,8 +48,8 @@ class RemoveDoubleBreaksTest extends \Tests\TestCase
         $filtered = $filter->apply($html);
 
         $this->assertEquals($filtered, '<h1>Hello</h1><br>There.');
-    }      
-    
+    }
+
     /**
      * @test
      */
@@ -71,5 +72,5 @@ class RemoveDoubleBreaksTest extends \Tests\TestCase
         $filtered = $filter->apply($html);
 
         $this->assertEquals($filtered, $expected);
-    }       
+    }
 }

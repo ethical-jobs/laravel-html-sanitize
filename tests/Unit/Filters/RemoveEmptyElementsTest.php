@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Filters;
 
-use DiDom\Document;
 use EthicalJobs\Sanitize\Filters\RemoveEmptyElements;
+use Tests\TestCase;
 
-class RemoveEmptyElementsTest extends \Tests\TestCase
+class RemoveEmptyElementsTest extends TestCase
 {
     /**
      * @test
@@ -19,7 +19,7 @@ class RemoveEmptyElementsTest extends \Tests\TestCase
         $filtered = $filter->apply($html);
 
         $this->assertEquals($filtered, '<div><p>hello world</p><p>Hello</p></div>');
-    }    
+    }
 
     /**
      * @test
@@ -33,8 +33,8 @@ class RemoveEmptyElementsTest extends \Tests\TestCase
         $filtered = $filter->apply($html);
 
         $this->assertEquals($filtered, '<ul><li>hello world</li><li>Hello</li></ul>');
-    }     
-    
+    }
+
     /**
      * @test
      */
@@ -47,5 +47,5 @@ class RemoveEmptyElementsTest extends \Tests\TestCase
         $filtered = $filter->apply($html);
 
         $this->assertEquals($filtered, '<div><em>hello world</em><em>Hello</em></div>');
-    }         
+    }
 }

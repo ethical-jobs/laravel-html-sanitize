@@ -2,35 +2,35 @@
 
 namespace Tests\Unit\Purifier;
 
-use DiDom\Document;
 use EthicalJobs\Sanitize\PurifierFactory;
+use Tests\TestCase;
 
-class functionalTest extends \Tests\TestCase
+class functionalTest extends TestCase
 {
     /**
      * @test
      */
-    public function its_output_is_deterministic_and_repoducable()
+    public function its_output_is_deterministic_and_reproducible()
     {
-        $fixture = file_get_contents(__DIR__.'/../../Fixtures/LifeWithoutBarriers/fixture.2.before.html');
+        $fixture = file_get_contents(__DIR__ . '/../../Fixtures/LifeWithoutBarriers/fixture.2.before.html');
 
         $purifier = PurifierFactory::create();
 
-        $passes = collect();
-
         $first = $purifier->purify($fixture);
 
-        $last = $purifier->purify($first);
-        $last = $purifier->purify($fixture);
-        $last = $purifier->purify($fixture);
-        $last = $purifier->purify($fixture);
-        $last = $purifier->purify($fixture);
-        $last = $purifier->purify($fixture);
-        $last = $purifier->purify($fixture);   
-        $last = $purifier->purify($fixture);   
-        $last = $purifier->purify($fixture);   
-        $last = $purifier->purify($fixture);   
+        $second = $purifier->purify($first);
+        $this->assertNotEquals($first, $second);
 
+        $third = $purifier->purify($fixture);
+        $this->assertEquals($first, $third);
+
+        $forth = $purifier->purify($fixture);
+        $this->assertEquals($first, $forth);
+
+        $fifth = $purifier->purify($fixture);
+        $this->assertEquals($first, $fifth);
+
+        $last = $purifier->purify($fixture);
         $this->assertEquals($first, $last);
-    }     
+    }
 }

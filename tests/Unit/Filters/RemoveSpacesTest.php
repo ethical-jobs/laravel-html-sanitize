@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Filters;
 
-use DiDom\Document;
 use EthicalJobs\Sanitize\Filters\RemoveSpaces;
+use Tests\TestCase;
 
-class SpacingTest extends \Tests\TestCase
+class SpacingTest extends TestCase
 {
     /**
      * @test
@@ -23,8 +23,9 @@ class SpacingTest extends \Tests\TestCase
 
         $filtered = $filter->apply($html);
 
-        $this->assertEquals($filtered, 'Successful candidates will be required to clear probity checks including National Criminal History Record Check and Working with Children Check (where relevant to the role).<br /> <strong> </strong> <strong> </strong> <br /><strong>How to Apply</strong><br />Include your resume and covering letter in one document, click &lsquo;Apply&rsquo; and follow the prompts. For any enquiries including persons with disability that require adjustments, contact Kristy Crowe at recruitment@lwb.org.au<br /> <br /><strong>Applications close at midnight on Tuesday 9th October 2018.</strong>');
-    }       
+        $this->assertEquals($filtered,
+            'Successful candidates will be required to clear probity checks including National Criminal History Record Check and Working with Children Check (where relevant to the role).<br /> <strong> </strong> <strong> </strong> <br /><strong>How to Apply</strong><br />Include your resume and covering letter in one document, click &lsquo;Apply&rsquo; and follow the prompts. For any enquiries including persons with disability that require adjustments, contact Kristy Crowe at recruitment@lwb.org.au<br /> <br /><strong>Applications close at midnight on Tuesday 9th October 2018.</strong>');
+    }
 
     /**
      * @test
@@ -32,11 +33,12 @@ class SpacingTest extends \Tests\TestCase
     public function it_removes_multiple_spaces()
     {
         $html = 'Successful   candidates    will be   required to clear probity checks including  <strong>  Hello </strong>';
-  
+
         $filter = new RemoveSpaces;
 
         $filtered = $filter->apply($html);
 
-        $this->assertEquals($filtered, 'Successful candidates will be required to clear probity checks including <strong> Hello </strong>');
-    }          
+        $this->assertEquals($filtered,
+            'Successful candidates will be required to clear probity checks including <strong> Hello </strong>');
+    }
 }

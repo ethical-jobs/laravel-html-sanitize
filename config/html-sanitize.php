@@ -17,7 +17,7 @@ return [
         Filters\ConvertHeadings::class,
         Filters\RemoveDoubleBreaks::class,
         Filters\RemoveSpaces::class,
-        Filters\ConvertPsuedoHeadings::class,        
+        Filters\ConvertPsuedoHeadings::class,
     ],
 
     /*
@@ -29,9 +29,9 @@ return [
     |
     */
     'post-filters' => [
-        Filters\RemoveSpaces::class,      
+        Filters\RemoveSpaces::class,
         Filters\RemoveEmptyElements::class,
-    ],        
+    ],
 
     'htmlpurifier' => [
 
@@ -92,7 +92,7 @@ return [
         |
         | http://htmlpurifier.org/live/configdoc/plain.html#HTML.Nofollow
         |
-        */    
+        */
         'HTML.Nofollow' => true,
 
         /*
@@ -122,7 +122,7 @@ return [
         | http://htmlpurifier.org/live/configdoc/plain.html#Attr.AllowedFrameTargets
         |
         */
-        'Attr.AllowedFrameTargets' => ['_blank','_top','_self','_parent'],
+        'Attr.AllowedFrameTargets' => ['_blank', '_top', '_self', '_parent'],
 
         /*
         |--------------------------------------------------------------------------
@@ -175,6 +175,6 @@ return [
         | http://htmlpurifier.org/live/configdoc/plain.html#AutoFormat.Custom
         |
         */
-        'AutoFormat.Custom' => [],  
-    ],  
+        'AutoFormat.Custom' => [],
+    ],
 ];

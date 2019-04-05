@@ -4,10 +4,9 @@ namespace EthicalJobs\Sanitize\Filters;
 
 /**
  * Removes double linebreaks
- * 
+ *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 class RemoveDoubleBreaks implements Filter
 {
     /**

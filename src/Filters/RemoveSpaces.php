@@ -4,10 +4,9 @@ namespace EthicalJobs\Sanitize\Filters;
 
 /**
  * Removes extra spaces
- * 
+ *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 class RemoveSpaces implements Filter
 {
     /**
@@ -15,7 +14,7 @@ class RemoveSpaces implements Filter
      */
     public function apply(string $html): string
     {
-        $withoutNonBreakingSpaces = str_ireplace('&nbsp;', ' ', $html);  
+        $withoutNonBreakingSpaces = str_ireplace('&nbsp;', ' ', $html);
 
         return preg_replace('/\s+/', ' ', $withoutNonBreakingSpaces);
     }
