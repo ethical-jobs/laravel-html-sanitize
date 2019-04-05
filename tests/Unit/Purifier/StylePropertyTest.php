@@ -1,11 +1,16 @@
 <?php
+/** @noinspection HtmlDeprecatedAttribute CssOverwrittenProperties CssInvalidPropertyValue CssRedundantUnit */
 
 namespace Tests\Unit\Purifier;
 
-use DiDom\Document;
 use EthicalJobs\Sanitize\PurifierFactory;
+use Tests\TestCase;
 
-class StylePropertyTest extends \Tests\TestCase
+/**
+ * Class StylePropertyTest
+ * @package Tests\Unit\Purifier
+ */
+class StylePropertyTest extends TestCase
 {
     /**
      * @test
@@ -24,10 +29,19 @@ class StylePropertyTest extends \Tests\TestCase
         $output = $purifier->purify($html);
 
         $this->assertFalse(str_contains($output, [
-            'color:','box-sizing:','font-family:', 'background-color:', 'background:','font-variant:','letter-spacing:',
-            'text-indent:','line-height:','word-spacing:','padding-left:',
+            'color:',
+            'box-sizing:',
+            'font-family:',
+            'background-color:',
+            'background:',
+            'font-variant:',
+            'letter-spacing:',
+            'text-indent:',
+            'line-height:',
+            'word-spacing:',
+            'padding-left:',
         ]));
-    }    
+    }
 
     /**
      * @test
@@ -50,7 +64,7 @@ class StylePropertyTest extends \Tests\TestCase
         $allowed = explode(',', $settings['CSS.AllowedProperties']);
 
         $this->assertTrue(str_contains($output, $allowed));
-    }     
+    }
 
     /**
      * @test
@@ -73,5 +87,5 @@ class StylePropertyTest extends \Tests\TestCase
 
         $this->assertFalse(str_contains($output, 'justify'));
         $this->assertFalse(str_contains($output, 'JUSTIFY'));
-    }         
+    }
 }

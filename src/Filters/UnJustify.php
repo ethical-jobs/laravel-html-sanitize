@@ -4,10 +4,9 @@ namespace EthicalJobs\Sanitize\Filters;
 
 /**
  * Removes justification alignment from a document
- * 
+ *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 class UnJustify implements Filter
 {
     /**

@@ -7,10 +7,9 @@ use HTMLPurifier_ConfigSchema;
 
 /**
  * Html purifier static factory
- * 
+ *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 class PurifierFactory
 {
     /**

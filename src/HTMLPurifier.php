@@ -2,15 +2,14 @@
 
 namespace EthicalJobs\Sanitize;
 
-use HTMLPurifier_Config;
-use EthicalJobs\Sanitize\Filters;
+use EthicalJobs\Sanitize\Filters\Filter;
+use HTMLPurifier_Encoder;
 
 /**
  * Html purifier service
- * 
+ *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 class HTMLPurifier extends \HTMLPurifier
 {
     /**
@@ -25,7 +24,7 @@ class HTMLPurifier extends \HTMLPurifier
      *
      * @var array
      */
-    protected $postFilters = [];    
+    protected $postFilters = [];
 
     /**
      * {@inheritdoc}
@@ -34,13 +33,33 @@ class HTMLPurifier extends \HTMLPurifier
     {
         $html = $this->applyFilters($this->preFilters, $html);
 
-        $html = \HTMLPurifier_Encoder::cleanUTF8($html);
-        
-        $html = stripcslashes($html);  
+        $html = HTMLPurifier_Encoder::cleanUTF8($html);
+
+        $html = stripcslashes($html);
 
         $html = parent::purify($html, $config);
 
         return $this->applyFilters($this->postFilters, $html);
+    }
+
+    /**
+     * Apply custom text filters
+     *
+     * @param array $filters
+     * @param string $html
+     * @return string
+     */
+    protected function applyFilters(array $filters, string $html): string
+    {
+        foreach ($filters as $filter) {
+
+            /** @var Filter $instance */
+            $instance = new $filter;
+
+            $html = $instance->apply($html);
+        }
+
+        return $html;
     }
 
     /**
@@ -49,37 +68,19 @@ class HTMLPurifier extends \HTMLPurifier
      * @param array $filters
      * @return void
      */
-    public function setPreFilters(array $filters) : void
+    public function setPreFilters(array $filters): void
     {
         $this->preFilters = $filters;
-    }   
+    }
 
     /**
      * Set the post-purify filters
      *
      * @param array $filters
      * @return void
-     */    
-    public function setPostFilters(array $filters) : void
+     */
+    public function setPostFilters(array $filters): void
     {
         $this->postFilters = $filters;
-    }   
-
-    /**
-     * Apply custom text filters
-     *
-     * @param string $html
-     * @return string
-     */    
-    protected function applyFilters(array $filters, string $html): string
-    {
-        foreach ($filters as $filter) {
-
-            $instance = new $filter;
-
-            $html = $instance->apply($html);
-        }
-
-        return $html;
     }
 }

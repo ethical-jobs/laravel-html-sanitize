@@ -7,7 +7,6 @@ namespace EthicalJobs\Sanitize;
  *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -15,7 +14,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @var string
      */
-    protected $configPath = __DIR__.'/../config/html-sanitize.php';  
+    protected $configPath = __DIR__ . '/../config/html-sanitize.php';
 
     /**
      * Perform post-registration booting of services.
@@ -36,6 +35,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom($this->configPath, 'html-sanitize');     
-    }   
+        $this->mergeConfigFrom($this->configPath, 'html-sanitize');
+    }
 }

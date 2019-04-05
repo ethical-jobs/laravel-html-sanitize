@@ -4,10 +4,9 @@ namespace EthicalJobs\Sanitize\Filters;
 
 /**
  * Removes empty elements
- * 
+ *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 class RemoveEmptyElements implements Filter
 {
     /**
