@@ -20,6 +20,11 @@ class PsuedoHeadingsTest extends TestCase
         );
 
         $this->assertEquals($filter->apply(
+            '<strong>Heading Text</strong> <br> Paragraph text'),
+            '<h3>Heading Text</h3>Paragraph text'
+        );
+
+        $this->assertEquals($filter->apply(
             '<p><br/><strong>Heading Text</strong><br>Parageaph text</p>'),
             '<p><h3>Heading Text</h3>Parageaph text</p>'
         );
@@ -27,6 +32,11 @@ class PsuedoHeadingsTest extends TestCase
         $this->assertEquals($filter->apply(
             '<br> <strong>Heading &amp; Text</strong><br> <p>Parageaph text</p>'),
             '<h3>Heading &amp; Text</h3> <p>Parageaph text</p>'
+        );
+
+        $this->assertEquals($filter->apply(
+            '<p> <strong>Heading &amp; Text</strong></p>'),
+            '<h3>Heading &amp; Text</h3>'
         );
 
         $this->assertEquals($filter->apply(
