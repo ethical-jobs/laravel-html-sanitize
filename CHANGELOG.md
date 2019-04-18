@@ -1,3 +1,7 @@
+# v0.3.0
+
+- Add more cases for converting pseudo headings
+
 # v0.2.1
 
 - Fix issue with build in Drone
