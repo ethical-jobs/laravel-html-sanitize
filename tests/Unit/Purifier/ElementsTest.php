@@ -10,7 +10,7 @@ class ElementsTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_invalid_elements()
+    public function it_removes_invalid_elements(): void
     {
         $html = '
             <h1>Hello Heading</h1>
@@ -41,7 +41,7 @@ class ElementsTest extends TestCase
     /**
      * @test
      */
-    public function it_only_allows_style_attribute_on_paragraphs()
+    public function it_only_allows_style_attribute_on_paragraphs(): void
     {
         $html = '
             <h1 style="text-align: right;">Hello Heading</h1>
@@ -76,7 +76,7 @@ class ElementsTest extends TestCase
     /**
      * @test
      */
-    public function it_converts_all_heading_tags_to_H3()
+    public function it_converts_all_heading_tags_to_H3(): void
     {
         $html = '
             <h1>Heading #1</h1>
@@ -116,7 +116,7 @@ class ElementsTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_double_linebreak_elements()
+    public function it_removes_double_linebreak_elements(): void
     {
         $html = '<h1>Hello world</h1>
             <br /><br />
@@ -139,7 +139,7 @@ class ElementsTest extends TestCase
     /**
      * @test
      */
-    public function it_leaves_single_linebreak_elements()
+    public function it_leaves_single_linebreak_elements(): void
     {
         $html = '
             <h1>Hello world</h1>
