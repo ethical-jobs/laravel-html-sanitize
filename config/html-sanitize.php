@@ -29,8 +29,8 @@ return [
     |
     */
     'post-filters' => [
-        Filters\RemoveSpaces::class,
         Filters\RemoveEmptyElements::class,
+        Filters\RemoveSpaces::class,
     ],
 
     'htmlpurifier' => [

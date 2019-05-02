@@ -16,6 +16,11 @@ class RemoveSpaces implements Filter
     {
         $withoutNonBreakingSpaces = str_ireplace('&nbsp;', ' ', $html);
 
-        return preg_replace('/\s+/', ' ', $withoutNonBreakingSpaces);
+        $html =  preg_replace('/\s+/', ' ', $withoutNonBreakingSpaces);
+        $html =  preg_replace('/>\s+</', '><', $html);
+        $html =  preg_replace('/\s*<(\/)?(h3|li|ol|p|ul)>\s*/', "<$1$2>", $html);
+        $html =  preg_replace('/\s*<br(?: \/)?>\s*/', "<br>", $html);
+
+        return $html;
     }
 }
