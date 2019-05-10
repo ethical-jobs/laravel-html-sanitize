@@ -14,17 +14,10 @@ class RemoveEmptyElements implements Filter
      */
     public function apply(string $html): string
     {
-        $needles = [
-            '<p>\n</p>',
-            '<p></p>',
-            '<p> </p>',
-            '<li>\n</li>',
-            '<li></li>',
-            '<em>\n</em>',
-            '<em></em>',
-            '<em> </em>',
-        ];
-
-        return str_ireplace($needles, '', $html);
+        return preg_replace(
+            '/(<(p|li|em|strong)>)(\s*?)(<\/\2>)/is',
+            '$3',
+            str_ireplace('\n', ' ', $html)
+        );
     }
 }

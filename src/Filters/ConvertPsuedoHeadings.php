@@ -33,7 +33,13 @@ class ConvertPsuedoHeadings implements Filter
         );
 
         $html = preg_replace(
-            '/(<p>(?:\s+)?<strong>(.{0,80}?)<\/strong>(<br *\/?>)?(?:\s+)?<\/p>)+/si',
+            '/(<strong>)\s*?(<\/strong>)/im',
+            ' ',
+            $html
+        );
+
+        $html = preg_replace(
+            '/(<p>(?:\s+)?<strong>(?>(.{0,80}?)<\/strong>)(<br *\/?>)?(?:\s+)?<\/p>)+?/si',
             '<h3>$2</h3>',
             $html
         );
