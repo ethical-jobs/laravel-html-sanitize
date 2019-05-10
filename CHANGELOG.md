@@ -1,3 +1,10 @@
+# v1.0.0
+
+- Removes extra redundant spaces in output.
+- BugFix: pseudo headings created with greater accuracy.
+- Bugfix: removes empty elements in a non-greedy fashion.
+- Added more tests for improved consistency.:
+
 # v0.3.0
 
 - Add more cases for converting pseudo headings
