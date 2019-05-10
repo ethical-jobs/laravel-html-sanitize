@@ -5,7 +5,7 @@ namespace Tests\Unit\Purifier;
 use EthicalJobs\Sanitize\PurifierFactory;
 use Tests\TestCase;
 
-class functionalTest extends TestCase
+class FunctionalTest extends TestCase
 {
     /**
      * @test
@@ -17,9 +17,10 @@ class functionalTest extends TestCase
         $purifier = PurifierFactory::create();
 
         $first = $purifier->purify($fixture);
+        $this->assertNotEquals($fixture, $first);
 
         $second = $purifier->purify($first);
-        $this->assertNotEquals($first, $second);
+        $this->assertEquals($first, $second);
 
         $third = $purifier->purify($fixture);
         $this->assertEquals($first, $third);

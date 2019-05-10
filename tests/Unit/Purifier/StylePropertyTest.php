@@ -15,7 +15,7 @@ class StylePropertyTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_invalid_style_properties()
+    public function it_removes_invalid_style_properties(): void
     {
         $html = '
             <p style="text-align: left; font-weight: bold; color: red;">Hello World</p>
@@ -46,7 +46,7 @@ class StylePropertyTest extends TestCase
     /**
      * @test
      */
-    public function it_does_not_remove_valid_style_properties()
+    public function it_does_not_remove_valid_style_properties(): void
     {
         $html = '
             <p style="text-align: left; font-weight: bold; color: red;">Hello World</p>
@@ -69,7 +69,7 @@ class StylePropertyTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_justification_styles()
+    public function it_removes_justification_styles(): void
     {
         $html = '
             <p style="text-align: justify;">Hello World</p>
