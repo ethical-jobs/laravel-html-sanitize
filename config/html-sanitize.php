@@ -81,7 +81,7 @@ return [
         | http://htmlpurifier.org/live/configdoc/plain.html#HTML.Allowed
         |
         */
-        'HTML.Allowed' => 'h1,h2,h3,h4,h5,strong,em,i,ul,ol,li,a[href|target|rel],img[alt|src],p[style],br',
+        'HTML.Allowed' => 'h1,h2,h3,h4,h5,strong,em,i,ul,ol,li,a[href|target|rel],img[alt|src|style],p[style],br',
 
         /*
         |--------------------------------------------------------------------------
@@ -134,7 +134,7 @@ return [
         | http://htmlpurifier.org/live/configdoc/plain.html#CSS.AllowedProperties
         |
         */
-        'CSS.AllowedProperties' => 'text-align,font-weight,font-style,text-decoration',
+        'CSS.AllowedProperties' => 'text-align,font-weight,font-style,text-decoration,max-width',
 
         /*
         |--------------------------------------------------------------------------
