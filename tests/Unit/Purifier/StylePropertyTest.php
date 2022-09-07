@@ -4,6 +4,7 @@
 namespace Tests\Unit\Purifier;
 
 use EthicalJobs\Sanitize\PurifierFactory;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 /**
@@ -28,7 +29,7 @@ class StylePropertyTest extends TestCase
 
         $output = $purifier->purify($html);
 
-        $this->assertFalse(str_contains($output, [
+        $this->assertFalse(Str::contains($output, [
             'color:',
             'box-sizing:',
             'font-family:',
@@ -63,7 +64,7 @@ class StylePropertyTest extends TestCase
 
         $allowed = explode(',', $settings['CSS.AllowedProperties']);
 
-        $this->assertTrue(str_contains($output, $allowed));
+        $this->assertTrue(Str::contains($output, $allowed));
     }
 
     /**
@@ -85,7 +86,7 @@ class StylePropertyTest extends TestCase
 
         $output = $purifier->purify($html);
 
-        $this->assertFalse(str_contains($output, 'justify'));
-        $this->assertFalse(str_contains($output, 'JUSTIFY'));
+        $this->assertFalse(Str::contains($output, 'justify'));
+        $this->assertFalse(Str::contains($output, 'JUSTIFY'));
     }
 }
