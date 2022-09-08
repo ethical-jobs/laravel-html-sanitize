@@ -3,6 +3,7 @@
 namespace Tests\Unit\Purifier;
 
 use EthicalJobs\Sanitize\PurifierFactory;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class ElementsTest extends TestCase
@@ -24,52 +25,17 @@ class ElementsTest extends TestCase
 
         $output = $purifier->purify($html);
 
-        $this->assertFalse(str_contains($output, [
+        $this->assertFalse(Str::contains($output, [
             '<span>',
             '</span>',
         ]));
 
-        $this->assertTrue(str_contains($output, [
+        $this->assertTrue(Str::contains($output, [
             '<h1>Hello Heading</h1>',
             'Hello span',
             '<div>Hello div</div>',
             '<p>Hello paragraph #1 Hello span</p>',
             '<p>Hello paragraph #2</p>',
-        ]));
-    }
-
-    /**
-     * @test
-     */
-    public function it_only_allows_style_attribute_on_paragraphs(): void
-    {
-        $html = '
-            <h1 style="text-align: right;">Hello Heading</h1>
-            <strong style="text-align: right;">Hello Strong</strong>
-            <ul style="text-align: right;">
-                <li style="text-align: right;">Hello List</li>
-            </ul>
-            <a href="" style="text-align: right;">Hello Link</a>
-            <img style="text-align: right;" src="https://google.com"  alt="Google"/>
-            <br style="text-align: right;" />
-        ';
-
-        $purifier = PurifierFactory::create();
-
-        $output = $purifier->purify($html);
-
-        $this->assertFalse(str_contains($output, [
-            'style="text-align: right;"',
-            'style=',
-        ]));
-
-        $this->assertTrue(str_contains($output, [
-            '<h1>Hello Heading</h1>',
-            '<strong>Hello Strong</strong>',
-            '<ul>',
-            '<li>Hello List</li>',
-            '<img src="https://google.com"  alt="Google"/>',
-            '<br />',
         ]));
     }
 
@@ -93,7 +59,7 @@ class ElementsTest extends TestCase
 
         $output = $purifier->purify($html);
 
-        $this->assertFalse(str_contains($output, [
+        $this->assertFalse(Str::contains($output, [
             '<h1>Heading #1</h1>',
             '<h1 style="text-align: left;">Heading #1</h1>',
             '<h2>Heading #2</h2>',
@@ -102,7 +68,7 @@ class ElementsTest extends TestCase
             '<h6>Heading #6</h6>',
         ]));
 
-        $this->assertTrue(str_contains($output, [
+        $this->assertTrue(Str::contains($output, [
             '<h3>Heading #1</h3>',
             '<h3 style="text-align: left;">Heading #1</h3>',
             '<h3>Heading #2</h3>',
@@ -155,11 +121,11 @@ class ElementsTest extends TestCase
 
         $output = $purifier->purify($html);
 
-        $this->assertFalse(str_contains($output, [
+        $this->assertFalse(Str::contains($output, [
             '<br />',
         ]));
 
-        $this->assertTrue(str_contains($output, [
+        $this->assertTrue(Str::contains($output, [
             '<h1>Hello world</h1>',
             '<br>',
             '<p>Hello there wonderful world...</p>',
